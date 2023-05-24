@@ -9,10 +9,6 @@ class MyString:
       self._value = value
     else:
       print("The value must be a string.")
-    
-  
-  def get_value(self):
-    return self._value
   
   def is_sentence(self):
     return self.value.endswith(".")
@@ -26,4 +22,4 @@ class MyString:
   def count_sentences(self):
     return len(re.findall("[!?.]+(?=$|\s)", self.value))
   
-  value = property(get_value, set_value)
+  value = property(lambda self: self._value,fset=set_value)
