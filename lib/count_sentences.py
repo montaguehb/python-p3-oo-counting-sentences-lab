@@ -4,17 +4,15 @@ class MyString:
   def __init__(self, value =''):
     self.value = value
 
-  def set_value(self):
-    return self._value
-  
-  def get_value(self, value):
-    try:
-      if(type(value) == str):
-        self._value = value
-      else:
-        raise TypeError
-    except TypeError:
+  def set_value(self, value):
+    if(isinstance(value, str)):
+      self._value = value
+    else:
       print("The value must be a string.")
+    
+  
+  def get_value(self):
+    return self._value
   
   def is_sentence(self):
     return self.value.endswith(".")
@@ -28,4 +26,4 @@ class MyString:
   def count_sentences(self):
     return len(re.findall("[!?.]+(?=$|\s)", self.value))
   
-  value = property(set_value, get_value)
+  value = property(get_value, set_value)
